@@ -24,7 +24,7 @@ body {
   text-shadow: none; }
 
 .reveal code {
-  font-family: 'Source Code Pro';
+  font-family: 'Source Code Pro', 'Monaco', 'Courier New';
 }
 
 /*********************************************
@@ -38,7 +38,7 @@ body {
 .reveal h6 {
   color: #222;
   margin: 0 0 20px 0;
-  font-family: 'Whitney SSm';
+  font-family: 'Whitney SSm', Helvetica, Arial;
   line-height: 1.1em;
   letter-spacing: 0.02em;
   text-align: center;
