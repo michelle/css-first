@@ -16,7 +16,7 @@ body {
   font-size: 36px;
   font-weight: 300;
   text-align: left !important;
-  color: #444; }
+  color: #2a2c5c; }
 
 ::selection {
   color: white;
@@ -36,9 +36,9 @@ body {
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  color: #222;
+  color: #2a2c5c;
   margin: 0 0 20px 0;
-  font-family: 'Whitney SSm', Helvetica, Arial;
+  font-family: 'Helvetica Neue', Helvetica, Arial;
   line-height: 1.1em;
   letter-spacing: 0.02em;
   text-align: center;
@@ -49,21 +49,30 @@ section {
 }
 
 .reveal h1 {
-  font-size: 2.5em;
+  font-weight: 500; 
+  font-size: 2em;
+}
+.reveal h3 {
+  font-weight: 600; 
+}
+.reveal h2 {
+  font-weight: 400; 
 }
 .reveal h4 {
   display: inline-block;
   padding: 5px 10px;
-  background-color: red;
+  background-color: #e02a3f;
   color: #fff;
-  font-size: 1em
+  font-size: 1em;
+  font-weight: 500; 
 }
 .reveal h5 {
   display: inline-block;
   padding: 5px 10px;
-  background-color: #0077ee;
+  background-color: #2a2c5c;
   color: #fff;
-  font-size: 1em
+  font-size: 1em;
+  font-weight: 500; 
 }
 .reveal h6 {
   display: inline;

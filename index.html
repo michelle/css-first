@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>CSS first</title>
+    <title>CSS and stuff</title>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <meta name="description" content="WITICAPAWILIRL">
@@ -45,54 +45,79 @@
       <div class="slides">
         <section>
           <center>
-            <h2>Building with <strong>CSS first</strong>.</h2>
-            <h5>Michelle Bu, CSSConf Oakland</h5>
+            <h2>Let's talk about our <strong>CSS</strong>.</h2>
+            <h5>Michelle Bu</h5><h4>★TXJS</h4>
           </center>
 <aside class="notes">
-Hey everyone. I'm Michelle.
+  Thanks Alex!
+  <br><br>
+Hey everyone. I'm Michelle. Let's talk about CSS today.
 </aside>
         </section>
 
-        <section data-background="images/franklin.png">
+        <section data-background="./images/sf.jpg">
 <aside class="notes">
-I came from about 12 blocks south of here. 9th and Franklin, right across from the Smart and Final. If you're new to the area and like any sorts of Asian cuisines I'd be happy to recommend some places.
+  I work for a company in sunny San Francisco called Stripe. This is what it looks like outside today.
 </aside>
         </section>
 
-        <section data-background="images/tepa.png">
+        <section data-background="#168eda">
+          <center>
+            <img src="./images/stripe-white.png">
+          </center>
 <aside class="notes">
-Outside of eating food, I work at Stripe. We do payments stuff. This is not Stripe, but the place across the street from Stripe, because we take security very seriously..
+Stripe is, most simply, an API that helps you accept other people's money.
 <br><br>
-At Stripe, I'm currently working on a rewrite of our user-facing payment dashboard.
+The project I'm currently working on is a rewrite of our dashboard, which helps our users keep track of how much money they've made and when they'll get paid. 
+<br><br>
+
 </aside>
         </section>
 
         <section>
+          <img src="images/anguished.jpg">
+          <img src="images/grimacing.jpg">
+          <img src="images/worried.jpg">
+
+          <h4 class="fragment css" style="float:left;"><code>!important</code></h4>
+          <img src="images/devil.jpg" style="float:right;margin: -25px 0 0 -25px;" class="fragment">
+          <br>
+<aside class="notes">
+  So, why do we have to talk about CSS, you ask? This is a Javascript conference!
+
+  For a lot of us, CSS is the thing we write once and forget about, and the only tool we need to know in our day-to-day is this one: [!important].
+  <br><br>
+  But no matter how hard you try to forget about those lines of CSS you just committed, it's still there. It'll always be there. It'll probably outlive your other code, and we'll see how this phenomenon happens later.
+  <br><br>
+ CSS such a large part of our codebase, but we don't treat it like it is-
+</aside>
+        </section>
+
+
+        <section>
           <center>
-            <img src="images/languages.png">
+            <img src="images/csspercentage.png">
             </center>
 
 <aside class="notes">
-As for everyone else at Stripe-- sometimes they'll need to write CSS, usually for our existing user-facing payment dashboard. It makes up a pretty big chunk of our codebase.
-<br><br>For some people, it's often not by choice, but because they need to ship some feature they're working on, and adding a button or some message to our dashboard is the last step before they're officially finished, or they're on call and are fixing some CSS bug that the last person introduced with their button addition.
-<br><br>Either way, it's almost always more of an annoyance to our developers than a pleasant task. They don't like thinking about CSS. In working on the rewrite of the user dashboard, I'm trying to solve some of these issues.
+  Prior to our rewrite project at Stripe, the CSS in our dashboard made up 1/4 of our codebase! That's a quarter of our codebase that people would try to forget about after they finish styling the feature they're working to add. It's understandable that they would do this--developers don't like thinking about CSS. In rewriting our dashboard, we're trying to make it so they don't have to.
 </aside>
         </section>
 
         <section>
           <div class="wrapper" style="position: relative;height: 500px;">
           <div style="position: absolute;">
-          <img src="images/modal.png" style="width: 60%;">
+          <img src="images/paymentmodal.png" style="width: 58%;">
           </div>
-          <div class="label fragment" style="position: absolute; width: 40%; right: 0px;">has a <code><strong>modal.js</strong></code>, <code><strong>modal.template</strong></code>, and a corresponding <code><strong style="color: blue;">modal.scss</strong></code></div>
+          <div class="label fragment" style="position: absolute; width: 40%; right: 0px;">has a <code><strong>modal.js</strong></code>, <code><strong>modal.template</strong></code>, and a corresponding <code><strong style="color: #2a2c5c;">modal.css</strong></code></div>
           </div>
 <aside class="notes">
-When we first built our current, existing dashboard we created a handful of reusable backbone views. These then had the honor of having their own reusable CSS for each template.
+When we first built our current dashboard we created a handful of reusable views. These then had the honor of having their very own reusable CSS for each template.
 <br><br>
 Everything else was essentially custom per template. Things that weren't obviously Javascript components did not get considered for any sort of CSS reusability.
 <br>
 <br>
-As an example, this modal component, complete with its fancy lightbox javascript functionality, had its own template and CSS.
+This modal component, for example, was first build with forms in mind. So we have a lot of cool form functionality built it, like "show more fields" and labels for optional fields and generally-nice-looking fieldsets.
 </aside>
         </section>
 
@@ -101,10 +126,13 @@ As an example, this modal component, complete with its fancy lightbox javascript
           <div style="position: absolute">
           <img src="images/modalhighlight.png" style="width: 60%;">
           </div>
-          <div class="label fragment" style="position: absolute; width: 40%; right: 0px;word-wrap: break-word;">has a few lines in <code><strong style="color: red;">create_new_account_view.scss</strong></code></div>
+          <div class="label fragment" style="position: absolute; width: 40%; right: 0px;word-wrap: break-word;">has a few lines in <code><strong style="color: #e02a3f;;">create_new_account_view.css</strong></code></div>
           </div>
 <aside class="notes">
-  ..but this modal explanation is just styled specifically for the template that it appears in.
+  However, as we added more modals to the dashboard, we realized we needed more variants of modals.
+  Instead of adding to the generic modal template and CSS, because, to be honest, it was scary to add styles to a generic component without any style guidelines or regression testing, we'd style them per view.
+  <br><br>
+  This particular modal explanation was added 2 years after the modal component was created, and the explanation is styled just for this view with a few lines in create_new_account_view.
 </aside>
         </section>
 
@@ -128,24 +156,40 @@ As an example, this modal component, complete with its fancy lightbox javascript
           </pre>
           </strong>
 <aside class="notes">
-  And we had a bunch of files just like this. It was easy to style each individual view separately at first, especially since SCSS allowed us to nest our selectors. So we could easily go crazy and style away without worrying about affecting other templates.
+  It was easy to style each individual view separately at first, especially since Sass allowed us to nest our selectors. So we could easily go crazy and style away without worrying about affecting other templates.
   <br><br>
   Except sometimes.
 </aside>
         </section>
 
         <section>
+          <img src="images/modalfiles.png">
+<aside class="notes">
+  What ended up happening over time was just a build up of modal styles that we just put in their parent views' CSS.
+</aside>
+        </section>
+
+        <section>
           <img src="images/files.png">
 <aside class="notes">
-  Sometimes, the particular template you're styling might be used in two places. Or nested inside a different template that now has styles that affect it. Either way, just by looking at our file names and structure (the convention is that the css file to style a view is in the same folder as the javascript and template), there's no easy way to tell what side effects the CSS you're writing might have.
+  <br><br>
+  Some developers were conscientious enough to put the CSS for the very specific modal they were styling into a `modals` folder, or leave TODOs saying they'll generalize the CSS one day.
 
 </aside>
         </section>
 
         <section>
-          <h2>A couple of minutes in the life of a developer who needs to add some <strong>CSS</strong> to the <strong>existing dashboard</strong>.</h2>
+          <img src="images/atodo.png">
 <aside class="notes">
-  Now, let me take you into "a minute in the life of a developer who needs to add some CSS"
+  But it didn't really matter if we were conscientious or not. The fact of the matter was that I would never move that CSS back. I wouldn't know how to and it all felt very fragile. What didn't matter at the time I wrote my CSS, though, is that having it in this parent view's CSS is just as fragile. The parent view i'm in might have multiple modals, and now I might've just accidentally introduced broken styles to the other modal. There's no easy way to tell what side effects my CSS might have.
+
+</aside>
+        </section>
+
+        <section>
+          <h2>5 minutes in the life of a developer who needs to add some <strong>CSS</strong> to the <strong>existing dashboard</strong>.</h2>
+<aside class="notes">
+  Now, let me take you into "five minutes in the life of a developer at Stripe who needs to add some CSS"
 </aside>
         </section>
 
@@ -160,6 +204,7 @@ As an example, this modal component, complete with its fancy lightbox javascript
           <h3>"Let me look for a similar thingy."</h3>
           <img src="images/day/lookalike.png">
 <aside class="notes">
+  My first attempt involves trying to apply the styles from this explanation to my own. But it doesn't work.
 </aside>
         </section>
 
@@ -170,17 +215,19 @@ As an example, this modal component, complete with its fancy lightbox javascript
           <img src="images/day/2.png">
           </center>
 <aside class="notes">
-  Now I take the first rule, try to grep for it, because I don't think we have sourcemaps set up properly, and I find nothing.
+  So, let's try looking at the CSS.
+  <br><br>
+  Now I take the first rule, try to grep for it, because my sourcemaps are broken and I promised that this would only take 5 minutes... and I find nothing.
 </aside>
         </section>
 
         <section>
           <h3>"<code>git grep 'div:last-child p'</code>" - nothing</h3>
           <center>
-          <img src="images/day/grep.png" width="500px">
+          <img src="images/day/grep.png" class="fragment" width="500px">
           </center>
 <aside class="notes">
-  Also look at that nesting. wow.
+  And of course I'm going to find nothing, because the styles I'm looking for are heavily nested within the parent view's CSS.
 </aside>
         </section>
 
@@ -189,17 +236,19 @@ As an example, this modal component, complete with its fancy lightbox javascript
           <img src="images/day/copy.png" style="width:50%;float:left;">
           <img src="images/day/paste.png" style="width:50%;float:right;">
 <aside class="notes">
-  Anyways, at this point it's no longer worth it, so I take the last set of styles, find the color, and make my own element look as close as possible.
-  <br><br>
-  Another 8 lines added to our CSS. This is no big deal, until you do for 3 years, between more than fifty different engineers.
+  Anyways, at this point I just want to stop worrying about CSS and finish everything else, so I take the last set of styles, find the color, and make my own element look as close as possible.
 </aside>
         </section>
 
         <section>
-          <h3>"Done!"</h3>
+          <h3>"Donezo!"</h3>
           <img src="images/day/todone.png">
 <aside class="notes">
-So performing this horrible process myself a couple of times and conducting extensive research, here's the four stages of CSS degradation--it's how I believe the CSS in our dashboard evolved with our engineering team and our changing engineering needs:
+And we're done!
+<br><br>
+  Another 8 lines added to our CSS. This is no big deal, until you do for 3 years, between more than fifty different engineers.
+  <br><br>
+So performing this horrible process myself a couple of times and conducting extensive research, I present to you the four stages of CSS degradation--or, how I believe the CSS in our dashboard evolved with our growing engineering team and our changing engineering needs:
 </aside>
         </section>
 
@@ -217,7 +266,7 @@ So performing this horrible process myself a couple of times and conducting exte
 <aside class="notes">
   Stage one is "Determination." This is where we're like 10 people total in the company. We're starry eyed and eager to ship a user dashboard.
   <br><br>
-  And we're smart, too, so we'll pull in the best tools, like SCSS, and clearly define how we want to organize our views and CSS-in a way that makes styling them really easy.
+  And we're smart, too, so we'll pull in the best tools, like Sass, and clearly define how we want to organize our views and CSS-in a way that makes styling them really easy and development time minimal. All 2 or 3 engineers who work on the dashboard know where everything is, anyways.
   <br><br>
   So we ship and thing and then celebrate. Whoo, mvp!
 </aside>
@@ -240,15 +289,15 @@ So performing this horrible process myself a couple of times and conducting exte
             <h5 class="fragment">(remember: poop is append-only.)</h5>
           </center>
 <aside class="notes">
-  Stage two is "Development." This is when we start building the non-MVP features and enhance the existing features. We add a bunch of new views, and everything's still pretty organized, to be honest, and super easy to write! SCSS makes everything so easy! But of course there are inevitably bugs.
+  Stage two is "Development." This is when we start building the non-MVP features and enhance the existing features. We add a bunch of new views, and everything's still pretty organized, to be honest, and super easy to write! Sass makes everything so easy! But of course there are inevitably bugs.
   <br><br>
-  And inevitably those bugs will leave some poopy code around, because you're just fixing a bug and it's pretty urgent so you left a few !importants in the code but it's okay you'll fix it later.
+  And inevitably those bugs will leave some poopy code around, because you're just fixing a bug and it's pretty urgent so you left a few !importants and TODOs in the code but it's okay you'll fix it later.
   <br><br>
-  CSS is append only;
+  One thing to keep in mind at this early stage, as Alex has once said to me, "CSS is an append-only language"
 </aside>
         </section>
         <section>
-          <h2>1 years and 20 engineers later...</h2>
+          <h2>1 year and 20 engineers later...</h2>
 <aside class="notes">
   Wow, you're at 30 engineers now! Development's picking up pace. And this is where you enter the third stage of code degradation...
 </aside>
@@ -267,13 +316,13 @@ So performing this horrible process myself a couple of times and conducting exte
             <img src="images/poop.png" class="fragment">
           </center>
 <aside class="notes">
-  Well, the dashboard still works. Most of the time. I can't see or hear this poop in this CSS that I only touch once or twice a week. Hell, this isn't even my team's code to maintain.
+  Well, the dashboard still works. Most of the time. I can't see or hear this poop in this CSS that I only touch once or twice a week. And you know what, this isn't even my team's code to maintain.
   <br><br>
   pooppooppoop
 </aside>
         </section>
         <section>
-          <h2>1 years and 40 engineers later...</h2>
+          <h2>6 months and 40 engineers later...</h2>
 <aside class="notes">
   You're growing exponentially, and so is the poopy CSS. And here is where you enter the fourth stage, despair.
 </aside>
@@ -292,7 +341,7 @@ So performing this horrible process myself a couple of times and conducting exte
 So let's break down how our existing dashboard's CSS managed to spiral downhill. It's not that in stage 1 we made bad decisions. I think those decisions were 100% the right decisions, and were perfect for our size and expertise and timeline at that time. The way our CSS was handled optimized for fast development and simplicity.
 <br><br>But as the organization grew, our CSS needs started to change. Not every engineer that joined was good at or cared about CSS, or had the context to know exactly how every view in our codebase worked or was used.
 <br><br>
-Regardless, I believe that if we can start over, and treat CSS as a first-class tool, we could avoid some of these problems. You wouldn't write Javascript without tests or a linter, right? Or generally tolerate poop in other parts of your codebase, so why allow it in CSS?
+Regardless, I believe that if we can start over and talk more about how we write CSS, we could avoid some of these problems. You wouldn't write Javascript without tests or a linter, right? Or generally tolerate poop in other parts of your codebase, so why allow it in CSS?
 <br><br>
 So, what were the problems?
 </aside>
@@ -304,6 +353,7 @@ So, what were the problems?
           <h4 class="fragment" style="float: right;">* sorta</h4>
 <aside class="notes">
  Well technically our tests were users writing in about something looking funny.
+ <br><br>
   We'll go into more about this later.
 </aside>
         </section>
@@ -331,7 +381,7 @@ So, what were the problems?
           </strong>
 
 <aside class="notes">
-  Well, technically there were conventions. That each template can have an SCSS file. But more specific than that, the actual way the CSS was written had no convention. We'd see everything from nested selectors to very vague selectors to more specifically-named classes of various forms to IDs, even.
+  Well, technically there were conventions. That each template can have an CSS file. But more specific than that, the actual way the CSS was written had no convention. We'd see everything from nested selectors to very vague selectors to more specifically-named classes of various forms to IDs, even.
 </aside>
         </section>
 
@@ -339,14 +389,14 @@ So, what were the problems?
           <h2><strong>No CSS reuse</strong></h2>
           <strong>
           <h5 class="fragment css" style="color: #454545;background-color: transparent">
-            <code>transfers_list_view.scss</code>
+            <code>transfers_list_view.css</code>
           </h5>
           <h5 class="fragment">
-            Yep
+            Yup
           </h5>
           <br>
           <h5 class="fragment css" style="color: #454545;background-color: transparent">
-            <code>sublist_subscriptions_list_item.scss</code>
+            <code>sublist_subscriptions_list_item.css</code>
           </h5>
           <h4 class="fragment">
             Nope
@@ -379,13 +429,13 @@ Cycle of more and more poop buildup.
 <br>
 <br>
 - Unhappiness when working :(.
-and disdain/shame for the codebase
+and disdain/shame for the codebase, which is unhealthy for the team
 <br>
 <br>
 The first time around, no one will debate that we made the right decisinos at the time, given the tools available. It's just that a lot of our tools and decisions didn't optimize for future happiness.
 <br>
 <br>
-So let's start over. This time from CSS first. Since we built the first iteration of our dashboard three years ago, a lot has changed, and a lot more tools are now available to help us solve our problems, and think of CSS as a first class citizen like the other tools that we use. Most developers would cringe if they left crappy Javascript around their codebase, and we should think of CSS the same way.
+So let's start over. This time, let's add CSS to the conversation. Since we built the first iteration of our dashboard three years ago, a lot has changed, and a lot more tools are now available to help us solve our problems, and let us think of CSS as a first class citizen like the other tools that we use.
 
 </aside>
         </section>
@@ -394,26 +444,37 @@ So let's start over. This time from CSS first. Since we built the first iteratio
           <h2><strong><strike>No</strike> CSS reuse</strong></h2>
           <h2 class="fragment">Boot<img src="images/stripe.png" width="250px" style="margin-bottom: -32px; margin-left: -10px;"></h2>
 <aside class="notes">
-  The last problem we talked about was "no css reuse."
+  Let's start by solving the last problem we talked about, no CSS reuse, because solving this one will help with our other problems as well.
   <br>
   <br>
-We're tackling this problem with our own component library, Bootstripe.
-<br>
-Because Stripestrap was not as catchy.
+We're tackling this problem by building our own component library, Bootstripe.
 <br>
 </aside>
         </section>
-        <section data-background="images/bootstripe-section.png">
+        <section>
+          <img src="images/propertygrid.png">
 <aside class="notes">
-  We've split up our new dashboard designs into composable components, everything from a responsive content section that you can compose with other components, like this property table.
-  <br><br>
-  The contrast isn't so great in some of these. Designers.
+  We've split up our new dashboard designs into composable components, everything from a responsive grid like this property grid,</aside>
+        </section>
+
+        <section>
+          <img src="images/propertygrid2.png">
+<aside class="notes">
+  ... that you can compose with other components.
 </aside>
         </section>
 
-        <section data-background="images/bootstripe-number.png">
+        <section>
+          <img src="images/spinner.png">
 <aside class="notes">
-  all the way down to the small details, like this "Big Number" component, that's just a big number display that's screenreader friendly and copypastable and supports currencies
+  all the way down to the small details, like our "Spinner With Label" component and our
+ </aside>
+        </section>
+
+        <section>
+          <img src="images/bootstripe-number.png">
+<aside class="notes">
+   Big Number component, that's just a number that's screenreader friendly, copypastable, supports multiple types of currencies, and most importantly, is pretty big.
  </aside>
         </section>
 
@@ -421,7 +482,7 @@ Because Stripestrap was not as catchy.
           <h3>Documentation</h3>
           <img src="images/documentation.png">
 <aside class="notes">
-  The documentation is autogenerated from comments in the CSS, and is right up in your face when you're building the component, so you're sort of guilted into updating it.
+  Documentation is automatically generated from comments in the CSS, and is right up in your face when you're building the component, so you're at least guilted into updating it.
  </aside>
         </section>
 
@@ -451,22 +512,23 @@ Because Stripestrap was not as catchy.
           <img src="images/with-list.png">
 
 <aside class="notes">
-  Investing the time to build these CSS components may seem daunting at first, but once bootstripe was finished, it was extremely easy to fill a page of our dashboard with these components and worry about the last 10% of the application details.
+  Investing the time to build these CSS components may seem daunting at first, but once bootstripe was finished, it was extremely easy to fill a page of our dashboard with these components and only have to worry about the last bit of application logic.
   </aside>
         </section>
         <section>
           <img src="images/with-labels.png">
 
 <aside class="notes">
-  We had thought about the context we would use them in.
+  We had thought about the context we would use these components in.
   <br><br>
-  An additional side effect that we didn't quite expect was that other engineers working on internal projects began to use bootstripe..
+  An additional side effect that we didn't quite expect or even try to optimize for was that because we had documentation, other engineers working on internal projects began to use bootstripe..
   </aside>
         </section>
 
-        <section data-background="images/people-alex.png">
+        <section>
+          <img src="images/peopledotstripe.png">
 <aside class="notes">
-  developers who didn't know how to CSS or design at all began using bootstripe for their projects, and loved that their projects could easily look nice and "Stripe-y" without writing CSS or consulting a designer.
+  developers who only knew basic CSS and didn't want to bother with pixel pushing at all began using bootstripe for internal projects, and loved that their projects could, with minimal work, look nice and "Stripe-y" without writing CSS or consulting a designer.
 </aside>
         </section>
 
@@ -511,9 +573,14 @@ Because Stripestrap was not as catchy.
             </code>
           </h4>
           </strong>
+          <br>
+          <img src="images/bignumber.png" class="fragment">
+          <br>
 
 <aside class="notes">
   Next, let's tackle the previous lack of conventions. Here's what we've settled on in terms of class naming.
+  <br><br>
+  This might look familiar to some of you--we borrowed heavily from SUIT CSS naming conventions in coming up with our own.
 </aside>
         </section>
 
@@ -527,7 +594,7 @@ Because Stripestrap was not as catchy.
           </div>
           </center>
 <aside class="notes">
-   Before we get too much into that, I'll go over the tools we've adopted for our new dashboard over SCSS. SCSS is amazing for CSS experts and makes their lives much easier, but when most of the folks who work on your CSS only know how to append to the file in arbitrary ways that somehow magically work, it's time to try to find a new tool that will give them less rope. Rework is what we ended up choosing.
+   Before we get too much into that, I'll go over the tools we've adopted for our new dashboard. Sass was amazing for CSS experts and makes their lives much easier, but when most of the folks who work on your CSS only know how to append to the file in semi-arbitrary ways that somehow magically work, it's time to try to find a new tool that will give them less rope. Rework is what we ended up choosing.
   <br><br>
   Rework is a plugin framework for CSS preprocessing. In its default form it takes the CSS you give it, parses it into an abstract syntax tree, the compiles it into the exact same thing on the other end
   <br><Br>
@@ -553,14 +620,7 @@ Because Stripestrap was not as catchy.
           <img src="images/rework-twitter.png" width="300px">
           </center>
 <aside class="notes">
-  This is super cool because rather than pulling in a monolithic CSS framework for CSS non-experts to use, we are now able to pick and choose specific plugins with limited scope so that non-experts don't append poop to your CSS.
-</aside>
-        </section>
-
-        <section>
-          <h3><strong>SUIT CSS</strong></h3>
-<aside class="notes">
-  SUIT CSS is a styling methodology for component-based development. It includes a CSS preprocessor built on top of rework as well as a style guide. We borrowed heavily from their style guide in creating our own, and forked the SUIT CSS conformance checker for ours.
+  This is super cool because rather than pulling in a magical, monolithic CSS framework for CSS non-experts to use, we are now able to pick and choose specific plugins with limited scope so we can dictate exactly how we want our CSS to be written.
 </aside>
         </section>
 
@@ -575,7 +635,7 @@ Because Stripestrap was not as catchy.
 <aside class="notes">
   rework-stripe-conformance is forked from rework-suit-conformance, and enforces that the CSS you write follows our defined rules. Not only does the checker yell at you if your CSS doesn't conform, it won't even build it.
   <br><br>
-  As an example, I added .big-number to the big number component, and the build fails with info about where the error is. 
+  As an example, I added .big-number to the big number component, and the build fails with info about where the error is. Our conformance checks also ensure that your selectors are not too generic--they require a class name of the style I described earlier, and yells at you if you try to style tags directly.
 </aside>
         </section>
 
@@ -583,20 +643,20 @@ Because Stripestrap was not as catchy.
           <h3>Tools make conventions easier.</h3>
           <h5>rework-namespace</h5>
           <strong><center>
-          <h4 class="fragment css">
+          <h4 class="css">
             <code>.<strike>namespace-</strike></code>
           </h4>
-          <h4 class="fragment css">
+          <h4 class="css">
             <code>
               ComponentName
             </code>
           </h4>
-          <h4 class="fragment css">
+          <h4 class="css">
             <code>
               -descendant
             </code>
           </h4>
-          <h4 class="fragment css">
+          <h4 class="css">
             <code>
               --descriptor
             </code>
@@ -605,7 +665,7 @@ Because Stripestrap was not as catchy.
           </strong>
 
 <aside class="notes">
-  And, because developers will grumble about being DRY, we'll pull in rework-namespace to let us omit that pesky namespace.
+  Let's start simple and just pull in rework-namespace to let us omit that pesky namespace when writing components.
 </aside>
         </section>
 
@@ -626,7 +686,7 @@ Because Stripestrap was not as catchy.
   <br><Br>
   One common way to style checkboxes and radio buttons is to hide the native input element, then style an empty label element to look like a checkbox or radio button. Except one's squarish and the other is circlish. And then there's a second label element that would be the actual label of the checkbox or radio button.
   <br><br>
-  On the left is only a part of the checkbox component, including all the interactions between the hidden input and the fake label and the real label. On the right is us reusing the checkbox code for the coreesponding three radio button elements. This sort of simple inheritance makes our lives a lot easier, while not being too overloaded and allowing more complex relationships.
+  On the left is only a part of the checkbox component, which has a few descendants--a hidden input element, the label that we style to look like a checkbox, and the actual label of the checkbox. On the right is us reusing the checkbox code for the coreesponding three radio button elements. This sort of simple inheritance makes our lives a lot easier, while not being too overloaded and allowing more complex relationships.
 </aside>
         </section>
 
@@ -638,7 +698,7 @@ Because Stripestrap was not as catchy.
           </strong>
 
 <aside class="notes">
-  We bundled these rework plugins and more into a custom CSS preprocessor, which we call "KFCSS". As an aside, if you're ever curious about KFC coupons or specials, come ask me about them after this talk.
+  We bundled these rework plugins and more into a custom CSS preprocessor, which we call "KFCSS". This is not yet open sourced, but we're working on it!.
 </aside>
         </section>
 
@@ -653,9 +713,10 @@ Because Stripestrap was not as catchy.
 <aside class="notes">
   Here's a brief list of the features we've pulled into KFCSS. this includes everything from rework-inherits and rework-namespace ,which you saw in the slides before, to small helpers like rework-move-media, which jus tmoves media queries to the end of the file, and rework-vars, which gives us CSS level 4-compatible variables.
   <br><br>
-  There's nothing too outrageous here, no nesting, no fancy math or function stuff beyond a simple "calc".
+  There's nothing too outrageous here, no nesting, no fancy functions beyond a simple "calc".
+  <br><br>
   Again, in general we want to 
-Limit the scope of features that the CSS nonexperts like myself can use and abuse and create terrible CSS with.
+Limit the scope of features that we're able to use. This way the CSS we write is actually very close to the CSS that is actually applied
 </aside>
         </section>
 
@@ -663,7 +724,6 @@ Limit the scope of features that the CSS nonexperts like myself can use and abus
           <h3>Abstraction!</h3>
           <strong><center>
           <pre class="html"><code>
-<!-- Spaced out for display -->
 <figure aria-labelledby="us-delim-number-1" class="bs-BigNumber">
   <span class="bs-BigNumber-denomination">€</span>5
   <span class="bs-BigNumber-delimiter--period"></span>678
@@ -674,18 +734,29 @@ Limit the scope of features that the CSS nonexperts like myself can use and abus
 </figure>
           </code>
           </pre>
-          <pre class="fragment" style="font-size: 0.8em;"><code>{{#big-number country="DE"}}5678.99{{/big-number}}</code></pre>
+          <pre class="fragment" style="font-size: 0.8em;"><code>{{bs-big-number number=5678.99 country="DE"}}</code></pre>
   <img src="images/gb.png" class="fragment">
           </center>
           </strong>
 
 <aside class="notes">
-  You're probably making fun of how ugly our class names are. It does, after all, get quite verbose, especially when you're starting to worry about accessibility and user experience and updating the markup of your components from time to time.
+  You're probably making fun of how ugly our class names are. It does, after all, get quite verbose, especially when you're starting to worry about accessibility and user experience and updating the markup of your components from time to time--one thing to keep in mind is that markup is VERY closely tied to your CSS. When you change one, you also need to change the other, so it should also be properly abstracted.
   <br>
 there was a bit of controversy when we first introduced these components, around both the long classnames and the verboseness o fhte markup, but the reality is you hopefully will only be writing HTML by hand ONCE. (In fact, if you did write them by hand in more than one place, whenever your components change, you'll need to change them in every single place.) you likely want to abstract them away with templates. In our case we're using Handlebars, but all templating languages work fine.
-but when focussed on writing good, clean, CSS and markup that makes sense (instead of just being the simplest possible thing), these classes make it a lot easier to think about how to structure your CSS. 
+but when focussed on writing CSS components and markup that makes sense (instead of just being the simplest possible thing), these classes make it a lot easier to think about how to structure your CSS. 
 <br><br>
 This is not groundbreaking, but abstracting away components make deleting code easier and upgrading markup for css. no more direct coupling of css to your templates.
+</aside>
+        </section>
+
+        <section>
+          <h3>Abstraction!</h3>
+          <img src="images/bootstripe-variants.png">
+
+<aside class="notes">
+  If you're using a framework like Ember or React, you can take it a step further and build Ember or react component librararies for your CSS component library
+  <br><br>
+  We've build ember-bootstripe and react-bootstripe.
 </aside>
         </section>
 
@@ -704,7 +775,7 @@ This is not groundbreaking, but abstracting away components make deleting code e
 <aside class="notes">
   The truth is, testing CSS IS pretty hard.
   <br><br>
-  One of the reasons we're ABLE to test now is because we're using CSS components. If you've ever had to visually diff a whole page before, you'll know that it's often not very effective--things are always changing, and you don't want to always play Find the super-subtle Difference every time you make a CSS change.
+  One of the reasons we're ABLE to test now is because we've built a CSS component library. If you've ever had to visually diff a whole page before, you'll know that it's often not very effective--things are always changing, and you don't want to always play Find the super-subtle Difference every time you make a CSS change.
   <br><br>
   Additionally, the hardest part about testing CSS are the various states your elements can be in. With our small components, we use rework-pseudo-classes to mock these states, so we can declaratively write tests.
   <br><br>
@@ -737,9 +808,19 @@ This is not groundbreaking, but abstracting away components make deleting code e
             <img src="images/why.png">
           </center>
 <aside class="notes">
-  So the benefits seem pretty clear, but why would you take the time to write your own?
-  <br>
-  It might seem intimidating to build this whole new bootstrap-equivalent from scratch that's custom for your site and design language, but in the long run developers able to focus a lot more on the 10% polish and building, and leave the CSS to the CSS experts.
+  So while the benefits seem pretty clear, the upfront time investment is still there--why would you take the time to write your own CSS component library?
+  <br><br>
+  For us, it made sense because we have our own design language and a fast-growing team. It might not make sense for you, but CSS is definitely something you should still talk and think about when starting new projects.
+</aside>
+        </section>
+        <section>
+          <center>
+            <img src="images/cssless.png">
+          </center>
+<aside class="notes">
+  After building out Bootstripe, CSS is much less a part of our everyday lives than it used to be :).
+  <br><br>
+  Developers are able to focus a lot more on the 10% polish and building, and leave the CSS to the CSS experts.
 </aside>
         </section>
         <section>
@@ -750,13 +831,12 @@ This is not groundbreaking, but abstracting away components make deleting code e
               <h5><code>.bs-Fieldset-explanation</code></h5>
               <br>
               <img src="images/info.png">
+              <br>
               </div>
             </strong>
           </center>
 <aside class="notes">
-  And then hopefully a few years from now, instead of trying to figure out what this means when styling an explanation to a form field, we'll know exactly what class to add.
-  <br><br>
-  The hope is that if we think about CSS first, we're able to think about CSS less.
+  Hopefully a few years from now, instead of trying to figure out what this means when styling an explanation to a form field, we'll know exactly what class to add and it'll work as expected, because it's documented, tested, and we know it follows the conventions that we've built tooling around.
 </aside>
         </section>
 
@@ -776,6 +856,13 @@ This is not groundbreaking, but abstracting away components make deleting code e
           <li><a style="color: blue;" href="https://github.com/chenglou/grunt-huxley">grunt-huxley</a> (testing)</li>
         </ul>
         </section>
+        <aside class="notes">
+  Thanks for coming out today! Most of the team working on our dashboard rewrite project are actually here today, so come by and say hi afterwards! I'll post these slides online in a bit.
+  <br><br>
+  My hope is that if we talk about CSS more at the start of a project, we're able to think about CSS less by the end.
+  <br><br>
+  Thank you!
+          </aside>
       </div>
 
     </div>
